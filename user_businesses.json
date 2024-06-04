@@ -42,11 +42,7 @@
         "summary": "Returns a Business",
         "parameters": [
           {
-            "in": "path",
-            "name": "key",
-            "type": "string",
-            "required": true,
-            "description": "The ID of the business. Use `lead` to get your lead business."
+            "$ref": "#/components/parameters/key"
           }
         ],
         "responses": {
@@ -78,7 +74,17 @@
         }
       }
     },
-    "parameters": {},
+    "parameters": {
+      "key": {
+        "name": "key",
+        "in": "path",
+        "description": "The ID of the business",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
     "responses": {},
     "schemas": {
       "Businesses": {
@@ -86,7 +92,6 @@
         "x-isObjectArray": true,
         "properties": {
           "business": {
-            "type": "object",
             "$items": {
               "type": "array",
               "$ref": "#/components/schemas/Business"
