@@ -92,8 +92,8 @@
         "x-isObjectArray": true,
         "properties": {
           "business": {
+            "type": "array",
             "$items": {
-              "type": "array",
               "$ref": "#/components/schemas/Business"
             }
           }
