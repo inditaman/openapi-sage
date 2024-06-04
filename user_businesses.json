@@ -43,6 +43,14 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/key"
+          },
+          {
+            "name": "Businesses",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Businesses"
+            }
           }
         ],
         "responses": {
@@ -50,6 +58,67 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Business" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "security": [{ "OAuth2": ["full_access"] }],
+        "tags": ["Accounting"],
+        "operationId": "updateBusiness",
+        "summary": "Updates a Business",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Business" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "security": [{ "OAuth2": ["full_access"] }],
+        "tags": ["Accounting"],
+        "operationId": "getUser",
+        "summary": "Returns the User",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "security": [{ "OAuth2": ["full_access"] }],
+        "tags": ["Accounting"],
+        "operationId": "updateUser",
+        "summary": "Updates the User",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "User",
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
               }
             }
           }
@@ -93,7 +162,7 @@
         "properties": {
           "business": {
             "type": "array",
-            "$items": {
+            "items": {
               "$ref": "#/components/schemas/Business"
             }
           }
@@ -220,6 +289,50 @@
             "type": "string"
           }
         }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The datetime when the item was created"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The datetime when the item was last updated"
+          },
+          "displayed_as": {
+            "type": "string",
+            "description": "Display text for the item"
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the user"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name of the user"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of the user"
+          },
+          "initials": {
+            "type": "string",
+            "description": "The initials of the user"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the user"
+          },
+          "locale": {
+            "type": "string",
+            "description": "The locale of the user"
+          }
+        },
+        "description": "Returns the User"
       }
     }
   }
